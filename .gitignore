@@ -44,7 +44,7 @@ logs/*.log
 .DS_Store
 Thumbs.db
 
-# Kaggle (NEVER commit!)
+# Kaggle - NEVER commit!
 kaggle.json
 .kaggle/
 
