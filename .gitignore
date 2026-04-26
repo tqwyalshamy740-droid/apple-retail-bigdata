@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.venv/
+
+# Data
+*.csv
+data/raw/
+data/processed/
+data/external/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+
+# Models
+models/*.pkl
+models/*.joblib
+models/*.parquet
+models/*.h5
+models/*.delta
+!models/.gitkeep
+
+# Spark
+*.checkpoint
+.checkpoint/
+spark-warehouse/
+metastore_db/
+
+# Logs
+logs/*.log
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kaggle (NEVER commit!)
+kaggle.json
+.kaggle/
+
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Streamlit
+.streamlit/secrets.toml
