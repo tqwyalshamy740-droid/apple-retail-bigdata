@@ -47,38 +47,30 @@ The dataset contains 5 CSV files representing Apple retail operations worldwide 
 apple-retail-bigdata/
 │
 ├── 📁 data/
-│   ├── raw/              # Original CSV files
-│   ├── processed/        # Processed datasets (CSV)
-│   ├── external/         # Supplementary data
+│   ├── raw/
+│   ├── processed/
+│   ├── external/
 │
 ├── 📁 src/
-│   ├── acquisition/      # Engineer #1: Data ingestion & cleaning 
+│   ├── acquisition/      # Engineer #1: Data ingestion & understanding
 │   │   ├── sales_loader.py
 │   │   ├── data_understanding.py
 │   │
-│   ├── eda/              #  Engineer #2 (Analysis and Visualization)
+│   ├── eda/              # Engineer #2: Analysis & visualization
 │   │   ├── sales_eda.py
 │   │   ├── sales_correlations.py
 │   │
-│   ├── preprocessing/    #  Engineer #2 preprocessing(feature_engineering-Cleaning-feature_preprocessing)
+│   ├── preprocessing/    # Engineer #2 (feature_engineering , feature_cleaning , feature_preprocessing)
 │   │   ├── feature_engineer.py
 │   │   ├── feature_cleaning.py
 │   │   ├── feature_preprocessing.py
 │   │
-│   ├── runner.py         # End-to-end pipeline (integration of your work)
-│
-├── 📁 notebooks/
-│
-├── 📁 config/
-│   └── spark_config.yaml
+│   ├── runner.py         
 │
 ├── 📁 logs/
-│
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
----
-
 ## 🚀 Quick Start
 
 ### Prerequisites
