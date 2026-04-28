@@ -43,7 +43,7 @@ The dataset contains 5 CSV files representing Apple retail operations worldwide 
 - **Veracity**: Synthetic dataset with realistic business patterns
 
 ---
-
+```
 apple-retail-bigdata/
 │
 ├── 📁 data/
@@ -71,6 +71,7 @@ apple-retail-bigdata/
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
+```
 ## 🚀 Quick Start
 
 ### Prerequisites
