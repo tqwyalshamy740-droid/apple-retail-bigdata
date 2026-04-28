@@ -44,42 +44,39 @@ The dataset contains 5 CSV files representing Apple retail operations worldwide 
 
 ---
 
-## 🏗️ Project Architecture
-
-```
 apple-retail-bigdata/
+│
 ├── 📁 data/
 │   ├── raw/              # Original CSV files
-│   ├── processed/        # Parquet/Delta format
-│   └── external/         # Supplementary data
+│   ├── processed/        # Processed datasets (CSV)
+│   ├── external/         # Supplementary data
 │
 ├── 📁 src/
-│   ├── acquisition/      # Engineer #1: Data ingestion & cleaning
-│   ├── eda/              # Engineer #2: Exploration & visualization
-│   ├── modeling/         # Engineer #3: ML models
-│   └── deployment/       # Engineer #4: Streamlit app
-│
-├── 📁 tests/
-│   ├── unit/             # Unit tests
-│   └── integration/      # Integration tests
+│   ├── acquisition/      # Engineer #1: Data ingestion & cleaning 
+│   │   ├── sales_loader.py
+│   │   ├── data_understanding.py
+│   │
+│   ├── eda/              #  Engineer #2 (Analysis and Visualization)
+│   │   ├── sales_eda.py
+│   │   ├── sales_correlations.py
+│   │
+│   ├── preprocessing/    #  Engineer #2 preprocessing(feature_engineering-Cleaning-feature_preprocessing)
+│   │   ├── feature_engineer.py
+│   │   ├── feature_cleaning.py
+│   │   ├── feature_preprocessing.py
+│   │
+│   ├── runner.py         # End-to-end pipeline (integration of your work)
 │
 ├── 📁 notebooks/
-│   ├── eda/              # Jupyter notebooks for exploration
-│   └── experiments/      # ML experiments
 │
 ├── 📁 config/
-│   └── spark_config.yaml # Spark configuration
+│   └── spark_config.yaml
 │
-├── 📁 models/            # Saved model artifacts
-├── 📁 dashboards/        # Streamlit applications
-├── 📁 logs/              # Execution logs
-├── 📁 docs/              # Documentation
+├── 📁 logs/
 │
-├── requirements.txt      # Python dependencies
-├── environment_setup.sh  # One-click setup script
-└── README.md            # This file
-```
-
+├── requirements.txt
+├── README.md
+├── .gitignore
 ---
 
 ## 🚀 Quick Start
