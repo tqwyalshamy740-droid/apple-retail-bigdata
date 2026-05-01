@@ -53,8 +53,8 @@ apple-retail-bigdata/
 │
 ├── 📁 src/
 │   ├── acquisition/      # Engineer #1: Data ingestion & understanding
-│   │   ├── sales_loader.py
-│   │   ├── data_understanding.py
+│   │   ├── sales_loader.py # Engineer #2
+│   │   ├── data_understanding.py # Engineer #2
 │   │
 │   ├── eda/              # Engineer #2: Analysis & visualization
 │   │   ├── sales_eda.py
