@@ -17,7 +17,7 @@ End-to-end Big Data solution for Apple Retail Sales analysis using **PySpark**, 
 |----------|------|---------------|-------------|
 | **#1** | **Data Engineer** | Data Acquisition, Environment Setup, Initial Ingestion, Basic Cleaning | Data Validation Framework |
 | #2 | Data Analyst / Feature Engineer | EDA, Data Visualization, Advanced Cleaning, Feature Engineering | Automated Reporting |
-| #3 | Machine Learning Engineer | Model Development, Training, Comparison, Evaluation | Model Selection Interface |
+| **#3** | **Machine Learning Engineer** | Model Development, Training, Comparison, Evaluation | Model Selection Interface |
 | #4 | Deployment / UI Engineer | Streamlit UI, Model Integration, Dynamic Data Upload | Multi-Model Comparison UI |
 
 ---
@@ -65,7 +65,20 @@ apple-retail-bigdata/
 │   │   ├── feature_cleaning.py
 │   │   ├── feature_preprocessing.py
 │   │
-│   ├── runner.py         
+│   ├── modeling/         # Engineer #3: Model development & evaluation
+│   │   ├── Engineer3_Final_v2.ipynb
+│   │
+│   ├── runner.py
+│
+├── 📁 models/
+│   ├── linear_regression/
+│   ├── generalized_lr/
+│   ├── decision_tree/
+│   ├── random_forest/
+│   ├── gbt/
+│   ├── isotonic/
+│   ├── evaluation_results.json
+│   └── model_comparison.png
 │
 ├── 📁 logs/
 ├── requirements.txt
@@ -98,7 +111,6 @@ source venv/bin/activate
 
 ### 4. Download Dataset
 ```bash
-# Using Kaggle API (requires kaggle.json in ~/.kaggle/)
 kaggle datasets download -d amangarg08/apple-retail-sales-dataset -p data/raw/
 cd data/raw && unzip apple-retail-sales-dataset.zip
 ```
@@ -106,6 +118,16 @@ cd data/raw && unzip apple-retail-sales-dataset.zip
 ### 5. Run Data Acquisition (Engineer #1)
 ```bash
 python src/acquisition/data_acquisition.py
+```
+
+### 6. Run Feature Engineering (Engineer #2)
+```bash
+python runner.py
+```
+
+### 7. Run Model Training (Engineer #3)
+```bash
+jupyter nbconvert --to notebook --execute src/modeling/Engineer3_Final_v2.ipynb
 ```
 
 ---
@@ -121,19 +143,20 @@ python src/acquisition/data_acquisition.py
 - [x] Conversion to optimized Parquet format
 - [x] Audit trail and metadata tracking
 
-### Stage 2: EDA & Feature Engineering (Engineer #2) ⏳
-- [ ] Statistical analysis and distributions
-- [ ] Correlation analysis
-- [ ] Time-series visualization
-- [ ] Advanced cleaning and outlier detection
-- [ ] Feature engineering (aggregations, encodings)
+### Stage 2: EDA & Feature Engineering (Engineer #2) ✅
+- [x] Statistical analysis and distributions
+- [x] Correlation analysis
+- [x] Time-series visualization
+- [x] Advanced cleaning and outlier detection
+- [x] Feature engineering (aggregations, encodings)
 
-### Stage 3: Model Development (Engineer #3) ⏳
-- [ ] Problem definition (classification/regression/clustering)
-- [ ] Model training with PySpark MLlib
-- [ ] Hyperparameter tuning
-- [ ] Performance evaluation
-- [ ] Model comparison and selection
+### Stage 3: Model Development (Engineer #3) ✅
+- [x] Problem definition (regression — predict sales quantity)
+- [x] Feature replication from Engineer #2 pipeline
+- [x] Training 6 models with PySpark MLlib
+- [x] Performance evaluation (RMSE, MAE, R2)
+- [x] Model comparison and selection
+- [x] Results exported for Engineer #4
 
 ### Stage 4: Deployment (Engineer #4) ⏳
 - [ ] Streamlit UI development
@@ -160,13 +183,10 @@ Key optimizations applied:
 ## 🧪 Testing
 
 ```bash
-# Run all tests
 python -m pytest tests/
 
-# Run specific module
 python -m pytest tests/unit/test_data_acquisition.py -v
 
-# Run with coverage
 python -m pytest --cov=src tests/
 ```
 
@@ -186,10 +206,8 @@ python -m pytest --cov=src tests/
 
 ### Git Workflow
 ```bash
-# Create feature branch
 git checkout -b feature/engineer-1-acquisition
 
-# Make changes and commit
 git add .
 git commit -m "feat: add data acquisition pipeline
 
@@ -198,7 +216,6 @@ git commit -m "feat: add data acquisition pipeline
 - Created data profiling module
 - Added unit tests"
 
-# Push and create PR
 git push origin feature/engineer-1-acquisition
 ```
 
@@ -248,3 +265,60 @@ This project is for educational purposes. Dataset is synthetic and sourced from 
 - Audit columns (`_ingestion_timestamp`, `_source_file`) added
 - Data quality profiles available in logs
 - Ready for EDA and advanced feature engineering
+
+---
+
+## 👨‍💻 Engineer #3 Deliverables
+
+### Completed Tasks
+1. ✅ **Problem Definition**: Regression task — predict `quantity` sold per transaction
+2. ✅ **Feature Replication**: Full replication of Engineer #2 pipeline (feature engineering + preprocessing)
+3. ✅ **Model Training**: 6 models trained using PySpark MLlib
+4. ✅ **Model Evaluation**: RMSE, MAE, R2 computed for all models on held-out test set
+5. ✅ **Model Comparison**: Visual comparison chart saved to `models/model_comparison.png`
+6. ✅ **Results Export**: `evaluation_results.json` saved for Engineer #4
+7. ✅ **Model Persistence**: All 6 models saved to `models/` directory
+
+### Models Trained
+
+| Model | Library | Features Used |
+|-------|---------|---------------|
+| LinearRegression | PySpark MLlib | scaled_features (181-dim sparse vector) |
+| GeneralizedLinearRegression | PySpark MLlib | scaled_features (181-dim sparse vector) |
+| DecisionTreeRegressor | PySpark MLlib | scaled_features (181-dim sparse vector) |
+| RandomForestRegressor | PySpark MLlib | scaled_features (181-dim sparse vector) |
+| GBTRegressor | PySpark MLlib | scaled_features (181-dim sparse vector) |
+| IsotonicRegression | PySpark MLlib | scaled_features (181-dim sparse vector) |
+
+### Evaluation Results
+
+| Model | RMSE | MAE | R2 |
+|-------|------|-----|----|
+| LinearRegression | 1.2267 | 1.0038 | 0.8179 |
+| GeneralizedLR | 1.2269 | 1.0047 | 0.8178 |
+| RandomForest | 1.2278 | 1.0107 | 0.8176 |
+| GBT | 1.2286 | 1.0079 | 0.8173 |
+| DecisionTree | 1.2289 | 1.0050 | 0.8172 |
+| IsotonicRegression | 2.8745 | 2.5024 | -0.0000 |
+
+### Best Model
+**LinearRegression** achieved the lowest RMSE (1.2267) and highest R2 (0.8179), explaining **81.79%** of variance in sales quantity. Linear models outperformed tree-based models because Engineer #2's preprocessing pipeline (OHE + StandardScaler) linearized the feature space, making linear models naturally more effective.
+
+### Files Created
+- `src/modeling/Engineer3_Final_v2.ipynb` - Full training and evaluation notebook
+- `models/linear_regression/` - Saved LinearRegression model
+- `models/generalized_lr/` - Saved GeneralizedLinearRegression model
+- `models/decision_tree/` - Saved DecisionTreeRegressor model
+- `models/random_forest/` - Saved RandomForestRegressor model
+- `models/gbt/` - Saved GBTRegressor model
+- `models/isotonic/` - Saved IsotonicRegression model
+- `models/evaluation_results.json` - Full evaluation metrics for Engineer #4
+- `models/model_comparison.png` - Visual comparison chart
+
+### Handoff Notes for Engineer #4
+- All 6 models saved in `models/` directory, loadable via `PipelineModel.load(path)`
+- `evaluation_results.json` contains model paths, feature columns, target column, and all metrics
+- Target column is `quantity`
+- Feature vector column is `scaled_features` (181-dim sparse vector from Engineer #2 preprocessing)
+- Best model path: `models/linear_regression`
+- Input data must pass through Engineer #2 preprocessing pipeline before inference
