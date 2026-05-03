@@ -275,7 +275,7 @@ This project is for educational purposes. Dataset is synthetic and sourced from 
 2. ✅ **Data Understanding**: Statistical analysis and distributions (`data_understand.py`)
 3. ✅ **Exploratory Data Analysis**: Time-series trends, sales patterns (`sales_eda.py`)
 4. ✅ **Correlation Analysis**: Feature relationships and multicollinearity check (`sales_correlations.py`)
-5. ✅ **Feature Engineering**: Date features, behavioral flags, leak-free aggregations (`feature_engineer.py`)
+5. ✅ **Feature Engineering**: Date features, behavioral flags (`feature_engineer.py`)
 6. ✅ **Feature Cleaning**: Null handling, column standardization (`feature_cleaning.py`)
 7. ✅ **Feature Preprocessing**: Temporal split, encoding, scaling, ML-ready pipeline (`feature_preprocessing.py`)
 8. ✅ **Pipeline Orchestration**: End-to-end runner (`runner.py`)
@@ -294,11 +294,11 @@ This project is for educational purposes. Dataset is synthetic and sourced from 
 ### Handoff Notes for Engineer #3
 
 - ML-ready data in `data/processed/sales_cleaned.csv`
-- Train/Test split is **temporal** (80/20) — no data leakage
-- Features scaled via `StandardScaler` fitted on train only
+- Train/Test split is **temporal** (80/20) 
+- Features scaled via `StandardScaler` 
 - Categorical encoding via `StringIndexer` + `OneHotEncoder`
 - Target variable: `quantity` (regression)
-- Feature vector: **181 dimensions** (sparse)
+- Feature vector: **181 dimensions** 
 - Ready for model training
 ---
 
