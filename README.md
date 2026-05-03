@@ -267,7 +267,7 @@ This project is for educational purposes. Dataset is synthetic and sourced from 
 - Ready for EDA and advanced feature engineering
 
 ---
-Stage 2: EDA & Feature Engineering Engineer #2
+### Stage 2: EDA & Feature Engineering Engineer #2
 Completed Tasks
 
 ✅ Data Loading: Unified sales loader with schema validation (sales_loader.py)
@@ -279,26 +279,26 @@ Completed Tasks
 ✅ Feature Preprocessing: Temporal split, encoding, scaling, ML-ready pipeline (feature_preprocessing.py)
 ✅ Pipeline Orchestration: End-to-end runner (runner.py)
 
-Files Created
+### Files Created
 
-src/eda/sales_loader.py — Data loading module
-src/eda/data_understand.py — Statistical profiling
-src/eda/sales_eda.py — EDA visualizations
-src/eda/sales_correlations.py — Correlation analysis
-src/features/feature_engineer.py — Feature engineering
-src/features/feature_cleaning.py — Feature cleaning
-src/features/feature_preprocessing.py — ML preprocessing pipeline
-src/runner.py — Pipeline orchestrator
+-`src/eda/sales_loader.py` — Data loading module
+-`src/eda/data_understand.py` — Statistical profiling
+-`src/eda/sales_eda.py` — EDA visualizations
+-`src/eda/sales_correlations.py` — Correlation analysis
+-`src/features/feature_engineer.py` — Feature engineering
+-`src/features/feature_cleaning.py`— Feature cleaning
+-`src/features/feature_preprocessing.py` — ML preprocessing pipeline
+-`src/runner.py` — Pipeline orchestrator
 
-Handoff Notes for Engineer #3
+### Handoff Notes for Engineer #3
 
-ML-ready data in data/processed/sales_cleaned.csv
-Train/Test split is temporal (80/20) 
-Features scaled via StandardScaler fitted on train only
-Categorical encoding via StringIndexer + OneHotEncoder
-Target variable: quantity (regression)
-Feature vector: 181 dimensions 
-Ready for model training
+-ML-ready data in data/processed/sales_cleaned.csv
+-Train/Test split is temporal (80/20) 
+-Features scaled via StandardScaler fitted on train only
+-Categorical encoding via StringIndexer + OneHotEncoder
+-Target variable: quantity (regression)
+-Feature vector: 181 dimensions 
+-Ready for model training
 
 ---
 
